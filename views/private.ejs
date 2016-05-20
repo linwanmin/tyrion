@@ -1,0 +1,154 @@
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/images/favicon.png">
+
+    <title>个人主页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/offcanvas.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">人员请假外出管控系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="/logout">注销</a></li>
+            <li><a href="/map">查看位置</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">个人信息</button>
+          </p>
+         
+          <div class="jumbotron">
+             <div class="col-lg-5">
+            <img class="img-circle" src="/images/nodejs.png" alt="Generic placeholder image" width="180" height="180">
+            <p></p></br>
+            <p></p></br>
+            </div><!-- /.col-lg-4 --> 
+            <div class="container">
+            <h1>Hello, <%=username%></h1>
+            <p>学&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp号：<%=userid%></p>
+            <p>起始时间：<%=bhour%>时<%=bmin%>分</p>
+            <p>截止时间：<%=ehour%>时<%=emin%>分</p> 
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+发点什么
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">发送消息</h4>
+      </div>
+      <div class="modal-body">
+          
+          <form  method="post">
+  
+                    <div class="input-group input-group-lg">
+                       <span class="input-group-addon">@</span>
+                       <input type="text" class="form-control" placeholder="对方学号" aria-describedby="sizing-addon1" name="to">
+                         <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit" >发送</button>
+                         </span>
+                   </div>
+                   <input type="text" name="message" class="form-control">          
+    
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>   
+
+<a href='/map'>
+    <button type="button" class="btn btn-primary btn-lg">
+查看位置
+    </button>
+</a>
+            </div>
+          </div>
+              <%if(mesnum!=0){%>  
+          <div>                 
+                 <h2><i>Messages:</i></h2></br>
+                  <%for(var i=1;i<=mesnum;i++)%>
+                  <%{%>
+                 <blockquote>
+                     <h5><b><%=mesnum%>.<%=date%></b></h5>
+                      <h4><b><%=come%>说:</b></h4>
+                      <h6><%=message%></h6>
+                 </blockquote>
+                <%}%>             
+          </div>
+             <%}%> 
+                          
+        </div><!--/.col-xs-12 .col-sm-9-->
+
+
+
+        
+      </div><!--/row-->
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+
+    </div><!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <script src="/javascripts/offcanvas.js"></script>
+  </body>
+</html>
+  

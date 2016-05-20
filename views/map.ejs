@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/images/favicon.png">
+
+    <title>地图</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/signin.css" rel="stylesheet">
+    
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+     <style>
+     canvas{
+     border:2px solid #03F;
+     }
+     </style>
+
+  </head>
+  
+  
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">人员请假外出管控系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="/logout">注销</a></li>
+            <li><a href="/private">返回主页</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="container">
+          
+    <h1><%= title %></h1>
+    <div id='btnFindMe'>
+        <button id="findMe" class="btn btn-primary btn-lg">Find Me<button>
+     </div>
+    <p id="myLocation"></p>
+    
+    <script>
+        function init(){
+        var btnFindMe=document.getElementById('findMe');
+        btnFindMe.addEventListener('click',findMe,false);
+        }
+        function geoSuccess(position){
+        var dateDisplay=new Date(position.timestamp);
+        var myLocationDiv=document.getElementById('myLocation');
+        myLocationDiv.innerHTML='LNG:'+postion.coords.longitude+'</br>'+
+        'Accuracy:'+position.coords.accuracy+'</br>';
+        }
+        function findMe(){
+        var myLocationDiv=document.getElementById('myLocation');
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(geoSuccess);
+            myLocationDiv.innerHTML='retry';
+            }
+            else{
+                myLocationDiv='Not support';
+                }
+     </script>
+      
+    
+    <canvas id="myCanvas" width="994" height="545"  style="position: absolute;left:180px;top:170px;z-index:0;"></canvas>
+
+        <script> 
+              var canvas = document.getElementById("myCanvas");
+              //简单地检测当前浏览器是否支持Canvas对象，以免在一些不支持html5的浏览器中提示语法错误
+              if(canvas.getContext){  
+              //获取对应的CanvasRenderingContext2D对象(画笔)
+              var ctx1 = canvas.getContext("2d");
+    
+              //创建新的图片对象
+              var img = new Image();
+               //指定图片的URL
+              img.src = "/images/屏幕截图2.bmp";
+              //浏览器加载图片完毕后再绘制图片
+              img.onload = function(){
+              //以Canvas画布上的坐标(0,0)为起始点，绘制图像
+              ctx1.drawImage(img, 0, 0);             
+              };
+              
+              };   
+              
+        </script>
+
+    <canvas id="myCanvas2" width="994" height="545"  style="position: absolute;left:180px;top:170px;z-index: 1;"></canvas>
+        <script> 
+              var canvas = document.getElementById("myCanvas2");
+              if(canvas.getContext){  
+              var ctx = canvas.getContext("2d");
+              var position = new Image();
+              position.src="/images/location.png";
+              position.onload=function(){
+              ctx.drawImage(position,430,300);
+              };              
+              }
+        </script>
+
+
+
+      <footer style="position: absolute;left:150px;top:800px;">
+        <p>&copy; Lincken 2016</p>
+      </footer>
+    </div> <!-- /container -->
+    
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+  
+  
+  
+  </body>
+</html>
